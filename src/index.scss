@@ -1,5 +1,29 @@
-$color: steelblue;
 
-.my-flix {
-  color: $color;
+.filmflix-client {
+  background-color:bisque;
+}
+
+.movie-image {
+  height: 15%;
+  width: 15%;
+  margin: 20px;
+}
+
+.movie-text {
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.3;
+  margin: 20px;
+}
+
+.movie-text-title {
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.3;
+  margin: 20px;
+}
+
+.movie-button {
+  margin-left: 20px;
+  font-size: 16px;
 }
