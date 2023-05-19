@@ -28258,7 +28258,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                class: "movie-text-title",
+                className: "movie-text-title",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "Title: "
@@ -28281,7 +28281,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                class: "movie-text",
+                className: "movie-text",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "Description: "
@@ -28304,7 +28304,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                class: "movie-text",
+                className: "movie-text",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "Director: "
@@ -28334,7 +28334,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                class: "movie-text",
+                className: "movie-text",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "Genre: "
@@ -28364,7 +28364,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                class: "movie-button",
+                className: "movie-button",
                 onClick: onBackClick,
                 children: "Go back"
             }, void 0, false, {
