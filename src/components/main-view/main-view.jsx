@@ -4,6 +4,8 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
+// MainView function component
+
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user")); //use localStorage as default value of user state
   const storedToken = localStorage.getItem("token"); //use localStorage as default value of token state
@@ -11,25 +13,25 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null); // initialize with null when localStorage is empty
   const [movies, setMovies] = useState([]); // store movie data retrieved from API
   const [selectedMovie, setSelectedMovie] = useState(null); // store selected movie for displaying details
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // track state of async request, show that request is happening
 
-  // fetch API movie data when component mounts (with useEffect hook)
+  // connect to filmflix API via useeffect hook
+
   useEffect(() => {
     if (!token) {
       return;
     }
 
-    // set loading before sending API request
-    setLoading(true);
+    setLoading(true); // set loading before sending API request
 
     fetch("https://filmflix-api.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
-        // stops loading after response received
-        setLoading(false);
+        setLoading(false); // stop loading after response received
         console.log("data", data);
+
         // match fetched data to required app structure
         const moviesFromApi = data.map((movie) => {
           return {
@@ -48,6 +50,7 @@ export const MainView = () => {
             Featured: movie.Featured,
           };
         });
+
         // set transformed movie data in state + catch errors
         setMovies(moviesFromApi);
       })
@@ -56,7 +59,8 @@ export const MainView = () => {
       });
   }, [token]);
 
-  // if user is not signed up or logged in, display LoginView / SignupView (will be displayed independently later on)
+  // if user is not signed up or logged in, display LoginView / SignupView
+  // will be displayed independently later on
 
   if (!user) {
     return (
@@ -76,8 +80,8 @@ export const MainView = () => {
   // if user selects movie, display MovieView
 
   if (selectedMovie) {
-    //add list of similar movies (that have the same genre)
     let similarMovies = movies.filter(
+      // add list of similar movies (that have the same genre)
       (movie) =>
         movie.Genre.Name === selectedMovie.Genre.Name &&
         movie.Title !== selectedMovie.Title
@@ -134,36 +138,34 @@ export const MainView = () => {
     );
   }
 
-  // if user does not select a movie, display movie cards (with logout button)
+  // if user does not select a movie, display movie cards
 
-  return (
-    loading ? (
-      <p>Loading...</p>
-    ) : !movies || !movies.length ? (
-      <p>No movies found</p>
-    ) : (
-      <div>
-        <button // display logout button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
+  return loading ? (
+    <p>Loading...</p>
+  ) : !movies || !movies.length ? (
+    <p>No movies found</p>
+  ) : (
+    <div>
+      <button // display logout button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        {" "}
+        Logout
+      </button>
+
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie._id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
           }}
-        >
-          {" "}
-          Logout
-        </button>
-
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
-            }}
-          />
-        ))}
-      </div>
-    )
+        />
+      ))}
+    </div>
   );
 };

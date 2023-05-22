@@ -1,12 +1,15 @@
 import { useState } from "react";
 
+// SignupView function component
+
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  // validation of user signup
+  // validate user signup
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -33,7 +36,8 @@ export const SignupView = () => {
     });
   };
 
-  // signup form 
+  // display signup form
+
   return (
     <form onSubmit={handleSubmit}>
       <label>

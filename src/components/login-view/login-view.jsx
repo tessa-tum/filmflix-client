@@ -1,11 +1,14 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+
+// LoginView function component
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-    // prevents the default behavior of the form which is to reload the entire page
+    // prevent default behavior of the form which is to reload the entire page
     event.preventDefault();
 
     const data = {
@@ -36,7 +39,8 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
 
-  // login form
+  // display login form
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -60,4 +64,10 @@ export const LoginView = ({ onLoggedIn }) => {
       <button type="submit">Submit</button>
     </form>
   );
+};
+
+// validate with propTypes
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
 };

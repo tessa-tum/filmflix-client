@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
-//MovieCard function component
+// MovieCard function component
+
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (
     <div
@@ -13,7 +14,8 @@ export const MovieCard = ({ movie, onMovieClick }) => {
   );
 };
 
-// validate props for MovieCard (propTypes)
+// validate with propTypes
+
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     _id: PropTypes.string.isRequired,
