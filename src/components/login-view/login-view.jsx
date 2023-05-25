@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { Form, Button } from "react-bootstrap";
 
 // LoginView function component
 
@@ -42,27 +43,31 @@ export const LoginView = ({ onLoggedIn }) => {
   // display login form
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit} className="mt-5">
+      <Form.Group className="mb-3" controlId="username">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          minLength={6}
           required
         />
-      </label>
-      <label>
-        Password:
-        <input
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="password">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          minLength={7}
           required
         />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+      </Form.Group>
+      <Button bsPrefix="btn" type="submit" className="mt-3">
+        Log In
+      </Button>
+    </Form>
   );
 };
 
