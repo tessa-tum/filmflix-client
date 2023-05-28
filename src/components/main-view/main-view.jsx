@@ -4,6 +4,8 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
+import { Button, Row, Col } from "react-bootstrap";
+
 // MainView function component
 
 export const MainView = () => {
@@ -13,7 +15,6 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null); // initialize with null when localStorage is empty
   const [movies, setMovies] = useState([]); // store movie data retrieved from API
   const [selectedMovie, setSelectedMovie] = useState(null); // store selected movie for displaying details
-  const [loading, setLoading] = useState(false); // track state of async request, show that request is happening
 
   // connect to filmflix API via useeffect hook
 
@@ -22,14 +23,11 @@ export const MainView = () => {
       return;
     }
 
-    setLoading(true); // set loading before sending API request
-
     fetch("https://filmflix-api.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
-        setLoading(false); // stop loading after response received
         console.log("data", data);
 
         // match fetched data to required app structure
@@ -59,113 +57,98 @@ export const MainView = () => {
       });
   }, [token]);
 
-  // if user is not signed up or logged in, display LoginView / SignupView
-  // will be displayed independently later on
+  // apply bootstrap styling
 
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </>
-    );
-  }
-
-  // if user selects movie, display MovieView
-
-  if (selectedMovie) {
-    let similarMovies = movies.filter(
-      // add list of similar movies (that have the same genre)
-      (movie) =>
-        movie.Genre.Name === selectedMovie.Genre.Name &&
-        movie.Title !== selectedMovie.Title
-    );
-
-    return (
-      <>
-        <button // display logout button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          {" "}
-          Logout
-        </button>
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-        <hr />
-        <h2>Similar movies</h2>
-        {similarMovies.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
+  return (
+    <Row className="justify-content-md-center">
+      {!user ? (
+        <Col className="mt-5" md={5}>
+          <h1>
+            Welcome to <span style={{ color: "#ff8906" }}>filmflix!</span>
+          </h1>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setToken(token);
+              setUser(user);
             }}
           />
-        ))}
-      </>
-    );
-  }
+          <div className="mt-5 text-muted text-center">
+            You do not have an account? <br />
+            Sig up now!
+          </div>
+          <SignupView />
+        </Col>
+      ) : movies.length === 0 ? (
+        <Col md={5} className="mt-5">
+          <h2>There are no movies!</h2>
+        </Col>
+      ) : selectedMovie ? (
+        <Col>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
+          />
+          <hr className="mt-3 mb-5" />
 
-  // if movie list is empty, display respective text message
+          <h3 className="mb-5">Similar Movies</h3>
 
-  if (movies.length === 0) {
-    return (
-      <>
-        <button // display logout button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          {" "}
-          Logout
-        </button>
-        <div>The list is empty!</div>
-      </>
-    );
-  }
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {movies
+              .filter(
+                (movie) =>
+                  movie.Genre.Name === selectedMovie.Genre.Name &&
+                  movie.Title !== selectedMovie.Title
+              )
 
-  // if user does not select a movie, display movie cards
+              .map((movie) => (
+                <Col
+                  className="me-4"
+                  key={movie._id}
+                  xs={4}
+                  sm={3}
+                  md={2}
+                  lg={2}
+                >
+                  <MovieCard
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => {
+                      setSelectedMovie(newSelectedMovie);
+                    }}
+                  />
+                </Col>
+              ))}
+          </div>
+        </Col>
+      ) : (
+        <>
+          <Row className="mt-5 mb-5">
+            <Col md={3}>
+              <Button
+                bsPrefix="btn"
+                type= "button"
+                onClick={() => {
+                  setUser(null);
+                  setToken(null);
+                  localStorage.clear();
+                }}
+              >
+                Logout
+              </Button>
+            </Col>
+          </Row>
 
-  return loading ? (
-    <p>Loading...</p>
-  ) : !movies || !movies.length ? (
-    <p>No movies found</p>
-  ) : (
-    <div>
-      <button // display logout button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        {" "}
-        Logout
-      </button>
-
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie._id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-    </div>
+          {movies.map((movie) => (
+            <Col className="mb-4" key={movie._id} sm={6} md={4} xl={3}>
+              <MovieCard
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ))}
+        </>
+      )}
+    </Row>
   );
 };
