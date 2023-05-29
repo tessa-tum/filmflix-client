@@ -8,6 +8,8 @@ body {
   font-size: 16px;
   height: 100%;
   min-height: 100vh;
+  padding-top:50px;
+  padding-bottom: 50px;
 }
 
 h2,
@@ -30,23 +32,34 @@ h6 {
 }
 
 .card {
-  color: #0f0e17;
+  color: #a7a9be;
   text-align: center;
-  border-radius: 4px;
-  box-shadow: 0 6px 10px rgba(40, 40, 40, 0.08), 0 0 6px rgba(40, 40, 40, 0.05);
-  // cursor: pointer;
-  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
-    0.3s box-shadow,
-    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  background-color:#0f0e17;
+  // border-radius: 4px;
+  // box-shadow: 0 6px 10px rgba(40, 40, 40, 0.08), 0 0 6px rgba(40, 40, 40, 0.05);
+  // // cursor: pointer;
+  // transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+  //   0.3s box-shadow,
+  //   0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
 
-  &:hover {
-    box-shadow: 0 10px 20px rgba(40, 40, 40, 0.12),
-      0 4px 8px rgba(40, 40, 40, 0.06);
-    transform: scale(1.05);
-  }
+  // &:hover {
+  //   box-shadow: 0 10px 20px rgba(40, 40, 40, 0.12),
+  //     0 4px 8px rgba(40, 40, 40, 0.06);
+  //   transform: scale(1.05);
+  // }
 }
 
 .card-title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bolder;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.navbar {
+  background-color:  #a7a9be;
+  padding-left: 10px;
+  padding-right: 10px;
 }

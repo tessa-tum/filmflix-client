@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // LoginView function component
 
@@ -67,9 +68,18 @@ export const LoginView = ({ onLoggedIn }) => {
       <Button bsPrefix="btn" type="submit" className="mt-3">
         Log In
       </Button>
+      <div className="mt-5 text-muted text-center">
+            You do not have an account? <br />
+          </div>
+          <div className="mt-2 text-center" style={{ color: "#ff8906" }}>
+      <Link to="/signup" className="text-muted text-decoration-none">
+        <span style={{ color: "#ff8906" }}> Sign up here!</span>
+        </Link>
+      </div>
     </Form>
   );
 };
+
 
 // validate with propTypes
 
