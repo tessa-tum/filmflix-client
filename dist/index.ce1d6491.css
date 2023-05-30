@@ -12020,13 +12020,28 @@ h2, .h2, h3, .h3, h6, .h6 {
 }
 
 .btn {
-  color: #fffffe;
-  background-color: #ff8906;
+  color: #0f0e17;
+  background-color: #a7a9be;
   border: none;
+  border-radius: 0;
 }
 
 .btn:hover {
-  color: #fffffe;
+  color: #0f0e17;
+  background-color: #a7a9be;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #2828281f, 0 4px 8px #2828280f;
+}
+
+.btn-secondary {
+  color: #0f0e17;
+  background-color: #ff8906;
+  border: none;
+  border-radius: 0;
+}
+
+.btn-secondary:hover {
+  color: #0f0e17;
   background-color: #ff8906;
   transform: scale(1.05);
   box-shadow: 0 10px 20px #2828281f, 0 4px 8px #2828280f;
@@ -12036,15 +12051,23 @@ h2, .h2, h3, .h3, h6, .h6 {
   color: #a7a9be;
   text-align: center;
   background-color: #0f0e17;
+  border-color: #a7a9be;
+  border-radius: 0;
 }
 
 .card-title {
+  padding-top: 10px;
   font-size: 16px;
   font-weight: bolder;
 }
 
 .card-text {
   font-size: 14px;
+}
+
+.profile-card {
+  background-color: #000;
+  padding: 10px;
 }
 
 .navbar {
