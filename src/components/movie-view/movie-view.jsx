@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 // MovieView function component
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, token, updateUser }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
 
-  // show similar movies array
+  // similar movies array
   let similarMovies = movies.filter(
     (m) => m.Genre.Name === movie.Genre.Name && m.Title !== movie.Title
   );
@@ -20,8 +20,13 @@ export const MovieView = ({ movies }) => {
       <Col className="mt-3">No similar movies in database.</Col>
     ) : (
       similarMovies.map((m) => (
-        <Col className="mt-4" key={m._id}  xs={10} sm={8} md={4} lg={3} xl={3}>
-          <MovieCard movie={m} />
+        <Col className="mt-4" key={m._id} xs={10} sm={8} md={4} lg={3} xl={3}>
+          <MovieCard
+            movie={m}
+            user={user}
+            token={token}
+            updateUser={updateUser}
+          />
         </Col>
       ))
     );
@@ -32,7 +37,7 @@ export const MovieView = ({ movies }) => {
         <Image
           src={movie.ImageURL}
           alt={`${movie.Title} Poster`}
-          className="fluid w-100 rounded square border border-white text-end"
+          className="fluid w-100 square border border-white text-end"
         />
       </Col>
 
@@ -63,7 +68,7 @@ export const MovieView = ({ movies }) => {
 
         <div className="mt-5 text-mb-md-4">
           <Link to={`/`}>
-            <Button bsPrefix="btn" type="button">
+            <Button className="btn-secondary" type="button">
               Go back
             </Button>
           </Link>
@@ -84,18 +89,27 @@ export const MovieView = ({ movies }) => {
 // validate with propTypes
 
 MovieView.propTypes = {
-  movies: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    ImageURL: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Bio: PropTypes.string.isRequired,
-    }).isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      Title: PropTypes.string.isRequired,
+      ImageURL: PropTypes.string.isRequired,
+      Director: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Bio: PropTypes.string.isRequired,
+      }).isRequired,
       Description: PropTypes.string.isRequired,
-    }),
-    Featured: PropTypes.bool.isRequired,
+      Genre: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+      }),
+    }).isRequired
+  ),
+  token: PropTypes.string.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthday: PropTypes.string.isRequired,
   }).isRequired,
 };
