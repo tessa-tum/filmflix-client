@@ -3,9 +3,10 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import { Button, Row, Col } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
+import { Row, Col } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // MainView function component
 
@@ -15,6 +16,11 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null); // initialize with null when localStorage is empty
   const [token, setToken] = useState(storedToken ? storedToken : null); // initialize with null when localStorage is empty
   const [movies, setMovies] = useState([]); // store movie data retrieved from API
+
+  const updateUser = (user) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
 
   // connect to filmflix API via useeffect hook
 
@@ -28,8 +34,6 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data", data);
-
         // match fetched data to required app structure
         const moviesFromApi = data.map((movie) => {
           return {
@@ -57,11 +61,8 @@ export const MainView = () => {
       });
   }, [token]);
 
-  // apply bootstrap styling
-
   return (
     <BrowserRouter>
-
       <Row>
         <Col>
           <NavigationBar
@@ -112,9 +113,7 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col className="mt-5" md={5}>
-                    <h1 className="text-center">
-                      Sign up here
-                    </h1>
+                    <h1 className="text-center">Sign up here</h1>
                     <SignupView />
                   </Col>
                 )}
@@ -134,10 +133,36 @@ export const MainView = () => {
                   </Col>
                 ) : (
                   <Col>
-                    <MovieView movies={movies} />
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      token={token}
+                      updateUser={updateUser}
+                    />
                   </Col>
                 )}
               </>
+            }
+          />
+
+          <Route // to ProfileView
+            path="/profile"
+            element={
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <ProfileView
+                  user={user}
+                  token={token}
+                  movies={movies}
+                  onLoggedOut={() => {
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                  }}
+                  updateUser={updateUser}
+                />
+              )
             }
           />
 
@@ -161,7 +186,12 @@ export const MainView = () => {
                         md={4}
                         xl={3}
                       >
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                          movie={movie}
+                          user={user}
+                          token={token}
+                          updateUser={updateUser}
+                        />
                       </Col>
                     ))}
                   </>
