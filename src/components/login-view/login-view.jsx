@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // LoginView function component
 
@@ -26,7 +27,6 @@ export const LoginView = ({ onLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Login response:", data);
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
@@ -50,7 +50,7 @@ export const LoginView = ({ onLoggedIn }) => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          minLength={6}
+          minLength={3}
           required
         />
       </Form.Group>
@@ -60,13 +60,21 @@ export const LoginView = ({ onLoggedIn }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          minLength={7}
+          minLength={4}
           required
         />
       </Form.Group>
-      <Button bsPrefix="btn" type="submit" className="mt-3">
+      <Button type="submit" className="mt-3 btn-secondary">
         Log In
       </Button>
+      <div className="mt-5 text-muted text-center">
+        You do not have an account? <br />
+      </div>
+      <div className="mt-2 text-center" style={{ color: "#ff8906" }}>
+        <Link to="/signup" className="text-muted text-decoration-none">
+          <span style={{ color: "#ff8906" }}> Sign up here!</span>
+        </Link>
+      </div>
     </Form>
   );
 };
