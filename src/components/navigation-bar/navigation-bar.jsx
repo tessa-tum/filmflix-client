@@ -31,7 +31,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
               <Nav.Link as={Link} to={`/`} className="navbar-link">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to={`/users`}>
+              <Nav.Link as={Link} to={`/profile`}>
                 Profile
               </Nav.Link>
               <Nav.Link onClick={onLoggedOut} className="ms-lg-auto">
@@ -50,7 +50,6 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 NavigationBar.propTypes = {
   onLoggedOut: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,

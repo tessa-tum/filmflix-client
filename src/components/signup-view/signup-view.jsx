@@ -82,7 +82,7 @@ export const SignupView = () => {
           required
         />
       </Form.Group>
-      <Button bsPrefix="btn" type="submit" className="mt-3">
+      <Button type="submit" className="mt-3 btn-secondary">
         Submit
       </Button>
     </Form>
