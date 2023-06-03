@@ -54,6 +54,7 @@ export const UserUpdate = ({ user, token, updateUser }) => {
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
+            className= "rounded-0"
             placeholder="Must have at least 3 characters"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -66,6 +67,7 @@ export const UserUpdate = ({ user, token, updateUser }) => {
           <Form.Control
             type="password"
             value={password}
+            className= "rounded-0"
             placeholder="Must have at least 6 characters"
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -76,6 +78,7 @@ export const UserUpdate = ({ user, token, updateUser }) => {
           <Form.Label>Email:</Form.Label>
           <Form.Control
             type="email"
+            className= "rounded-0"
             placeholder="Must be a valid email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -86,6 +89,7 @@ export const UserUpdate = ({ user, token, updateUser }) => {
           <Form.Label className="mb-3">Birthday:</Form.Label>
           <Form.Control
             type="date"
+            className= "rounded-0"
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
             required
