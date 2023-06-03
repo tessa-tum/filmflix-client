@@ -72,6 +72,12 @@ h6 {
   background-color: #a7a9be;
   padding-left: 10px;
   padding-right: 10px;
+  color: #0f0e17;
+}
+
+.form-control:focus {
+  border-color: #ff8906;
+  box-shadow: 0 0 0 0.2rem rgba(131, 36, 2, 0.25);
 }
 
 .footer {

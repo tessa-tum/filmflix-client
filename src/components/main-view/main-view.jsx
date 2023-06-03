@@ -18,11 +18,20 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null); // initialize with null when localStorage is empty
   const [token, setToken] = useState(storedToken ? storedToken : null); // initialize with null when localStorage is empty
   const [movies, setMovies] = useState([]); // store movie data retrieved from API
+  const [searchItem, setSearchItem] = useState(""); // enable search for a movie by title
+
+  // enable user updates
 
   const updateUser = (user) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
   };
+
+  // enable search function
+
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchItem.toLowerCase())
+  );
 
   // connect to filmflix API via useeffect hook
 
@@ -75,6 +84,8 @@ export const MainView = () => {
               localStorage.clear();
               window.location.reload();
             }}
+            searchItem={searchItem}
+            setSearchItem={setSearchItem}
           />
         </Col>
       </Row>
@@ -91,9 +102,9 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col xs= {10} sm={10} md = {7} lg = {4} className="mt-5">
+                  <Col xs={10} sm={10} md={7} lg={4} className="mt-5">
                     <h1 className="text-center">
-                      Welcome to{" "}
+                      Welcome to {""}
                       <span style={{ color: "#ff8906" }}>filmflix!</span>
                     </h1>
                     <LoginView
@@ -114,10 +125,11 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col xs= {10} sm={10} md = {7} lg = {4} className="mt-5">
+                  <Col xs={10} sm={10} md={7} lg={4} className="mt-5">
                     <h1 className="text-center">
                       Sign up {""}
-                      <span style={{ color: "#ff8906" }}>here</span></h1>
+                      <span style={{ color: "#ff8906" }}>here</span>
+                    </h1>
                     <SignupView />
                   </Col>
                 )}
@@ -182,10 +194,11 @@ export const MainView = () => {
                   </Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
+                    {filteredMovies.map((movie) => (
                       <Col
                         className="mb-4"
                         key={movie._id}
+                        xs= {12}
                         sm={6}
                         md={4}
                         xl={3}
@@ -203,7 +216,6 @@ export const MainView = () => {
               </>
             }
           />
-          
         </Routes>
       </Row>
 
@@ -212,7 +224,6 @@ export const MainView = () => {
           <Footer />
         </Col>
       </Row> */}
-      
     </BrowserRouter>
   );
 };
