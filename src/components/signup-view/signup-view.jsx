@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 // SignupView function component
 
@@ -9,6 +10,8 @@ export const SignupView = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
+
+  const navigate = useNavigate();
 
   // validate user signup
 
