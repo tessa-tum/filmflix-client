@@ -5,7 +5,7 @@
 This responsive SPA is for movie enthusiasts who enjoy reading information about different movies and want to
 keep an eye on their favorites. 
 
-The client-side UI complements the previously set up [RESTful API](https://github.com/tessa-tum/filmflix-api) and MongoDB database, aiming to provide a seamless user experience. The app is built with the MERN-stack and [hosted on netlify](https://filmflix-app.netlify.app/login).
+The client-side UI complements the previously set up [RESTful API](https://github.com/tessa-tum/filmflix-api) and MongoDB database, aiming to provide a seamless user experience. The app is built with the MERN-stack and [hosted on netlify](https://filmflix-project.netlify.app/).
 
 ## Interface
 
