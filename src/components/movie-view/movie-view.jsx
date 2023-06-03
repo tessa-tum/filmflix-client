@@ -10,17 +10,17 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
 
-  // similar movies array
-  let similarMovies = movies.filter(
+  // print similar movies array
+  const similarMovies = movies.filter(
     (m) => m.Genre.Name === movie.Genre.Name && m.Title !== movie.Title
   );
 
-  let printSimilarMovies =
+  const printSimilarMovies =
     similarMovies.length === 0 ? (
       <Col className="mt-3">No similar movies in database.</Col>
     ) : (
       similarMovies.map((m) => (
-        <Col className="mt-4" key={m._id} xs={10} sm={8} md={4} lg={3} xl={3}>
+        <Col className="mt-4" key={m._id} xs={12} md={6} lg={3} xl= {3}>
           <MovieCard
             movie={m}
             user={user}
@@ -32,7 +32,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     );
 
   return (
-    <Row className="d-flex flex-row-reverse mt-5">
+    <Row className="d-flex flex-row-reverse mt-5 mb-5">
       <Col xs={12} sm={12} md={6} lg={4} className="mb-5">
         <Image
           src={movie.ImageURL}
@@ -41,7 +41,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         />
       </Col>
 
-      <Col className="d-flex flex-column me-5">
+      <Col className="d-flex flex-column me-5 mb-5">
         <h2 className="my-0">
           <span>{movie.Title}</span>
         </h2>
@@ -75,12 +75,10 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         </div>
       </Col>
 
-      <hr className="mt-3 mb-5" />
-
-      <h3>Similar Movies</h3>
+      <h2>Similar Movies</h2>
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <Row>{printSimilarMovies}</Row>
+        <Row className="mb-4">{printSimilarMovies}</Row>
       </div>
     </Row>
   );

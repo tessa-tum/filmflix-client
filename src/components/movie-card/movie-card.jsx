@@ -76,8 +76,11 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
   };
 
   return (
+ 
     <Card bsPrefix="card" className="h-100" border="light">
+    <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
       <Card.Img variant="top" src={movie.ImageURL} alt={movie.Title} />
+      </Link>
       <Card.Body
         style={{
           display: "flex",
@@ -85,27 +88,23 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
           justifyContent: "space-between",
         }}
       >
-        <div>
           <Card.Title bsPrefix="card-title">{movie.Title}</Card.Title>
-          <Card.Text bsPrefix="card-text">{movie.Director.Name}</Card.Text>
-        </div>
-        <div style={{ marginTop: "12px" }}>
-          <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-            <Button className="btn w-100 mb-3 mt-3">See more</Button>
-          </Link>
-        </div>
+          <Card.Text>{movie.Director.Name}</Card.Text>
+          
 
         {isFavorite ? (
-          <Button onClick={removeFavorite} className="btn-secondary w-100">
-            Remove from favorites
+          <Button onClick={removeFavorite} className="btn-secondary w-100 mt-3 text-align-bottom">
+            Remove from favs
           </Button>
         ) : (
-          <Button onClick={addFavorite} className="btn-secondary w-100">
-            Add to favorites
+          <Button onClick={addFavorite} className="btn-secondary w-100 mt-3 text-align-bottom">
+            Add to favs
           </Button>
         )}
+       
       </Card.Body>
     </Card>
+
   );
 };
 

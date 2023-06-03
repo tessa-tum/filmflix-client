@@ -7,26 +7,31 @@ export const UserFavMovies = ({ movies, user, token, updateUser }) => {
     user.FavoriteMovies.includes(movie._id)
   );
 
+  // print favorite movies array
+
+  const printFavoriteMovies =
+    favoriteMovies.length === 0 ? (
+      <Col className="mt-3">No favorite movies yet.</Col>
+    ) : (
+      favoriteMovies.map((movie) => (
+        <Col className="mt-4" key={movie._id} xs={12} sm={9} md={6} lg={3} xl={3}>
+          <MovieCard
+            movie={movie}
+            user={user}
+            token={token}
+            updateUser={updateUser}
+          />
+        </Col>
+      ))
+    );
+
   return (
     <>
-      <Row>
-        <Col xs={12} className="mt-3 mb-5 text-center">
-          <h3>Your favorite movies:</h3>
-        </Col>
-      </Row>
+      <h2>Favorite movies:</h2>
 
-      <Row className="justify-content-center">
-        {favoriteMovies.map((movie) => (
-          <Col xs={12} md={6} lg={3} className="mb-4" key={movie._id}>
-            <MovieCard
-              movie={movie}
-              user={user}
-              token={token}
-              updateUser={updateUser}
-            />
-          </Col>
-        ))}
-      </Row>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <Row className="mb-4">{printFavoriteMovies}</Row>
+      </div>
     </>
   );
 };

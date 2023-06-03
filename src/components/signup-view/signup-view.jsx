@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 
 // SignupView function component
 
@@ -45,7 +47,7 @@ export const SignupView = () => {
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter a username (min 3 characters)"
+          placeholder="Must have at least 3 characters"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -56,18 +58,18 @@ export const SignupView = () => {
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Enter a password (min 8 characters)"
+          placeholder="Must have at least 6 characters"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minLength={8}
+          minLength={6}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email:</Form.Label>
         <Form.Control
           type="email"
-          placeholder="Enter a valid email"
+          placeholder="Must be a valid email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -83,8 +85,19 @@ export const SignupView = () => {
         />
       </Form.Group>
       <Button type="submit" className="mt-3 btn-secondary">
-        Submit
+        Signup
       </Button>
+
+      <div className="mt-5 text-muted text-center">
+        You already have an account? <br />
+      </div>
+
+      <div className="mt-2 text-center" style={{ color: "#ff8906" }}>
+        <Link to="/login" className="text-muted text-decoration-none">
+          <span style={{ color: "#ff8906" }}> Login here!</span>
+        </Link>
+      </div>
+
     </Form>
   );
 };

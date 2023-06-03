@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Col, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const UserUpdate = ({ user, token, updateUser }) => {
@@ -46,63 +46,57 @@ export const UserUpdate = ({ user, token, updateUser }) => {
   };
 
   return (
-    <Col>
-      <Card
-        className="mx-auto col-10 col-md-8 col-lg-6"
-        bsPrefix="profile-card"
-      >
-        <Card.Body>
-          <Card.Title className="mb-3">Update your info</Card.Title>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                minLength="5"
-                className="bg-light"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength="8"
-                className="bg-light"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-light"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Birthday:</Form.Label>
-              <Form.Control
-                type="date"
-                value={birthday}
-                onChange={(e) => setBirthday(e.target.value)}
-                required
-                className="bg-light"
-              />
-            </Form.Group>
-            <Button className="mt-4 mb-2 btn-secondary" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </Col>
+    <>
+      <h2 className="mb-3">Update information</h2>
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Must have at least 3 characters"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength="5"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            placeholder="Must have at least 6 characters"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength="8"
+
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Must be a valid email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label className="mb-3">Birthday:</Form.Label>
+          <Form.Control
+            type="date"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Button className="mt-4 btn-secondary" type="submit">
+          Update
+        </Button>
+      </Form>
+    </>
   );
 };
 

@@ -1,7 +1,8 @@
-import { Card, Col, Row, Button } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { UserInfo } from "./user-info";
 import { UserUpdate } from "./user-update";
 import { UserFavMovies } from "./user-fav-movies";
+import { UserDelete } from "./user-delete";
 import PropTypes from "prop-types";
 
 export const ProfileView = ({
@@ -11,98 +12,34 @@ export const ProfileView = ({
   onLoggedOut,
   updateUser,
 }) => {
-  const deleteAccount = () => {
-    fetch(`https://filmflix-api.herokuapp.com/users/${user.Username}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Your account has been deleted. Good Bye!");
-          onLoggedOut();
-        } else {
-          alert("Could not delete account");
-        }
-      })
-      .catch((e) => {
-        alert(e);
-      });
-  };
-
   return (
     <>
-      <Row className="justify-content-center">
-        <Col className="mt-5">
-          <h1 className="text-center">
-            Your <span style={{ color: "#ff8906" }}>profile</span>
-          </h1>
+      <Row className="mt-5">
+        <Col xs={12} sm={11} md={6} lg={4} xl={4}>
+          <UserInfo user={user} />
         </Col>
       </Row>
 
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <Card
-            border="light"
-            className="w-100 mt-5 mb-3 text-center"
-            bsPrefix="profile-card"
-          >
-            <Card.Body>
-              <UserInfo user={user} />
-            </Card.Body>
-          </Card>
+      <Row className="mt-5">
+        <Col xs={12} sm={10} md={6} lg={5} xl={4}>
+          <UserUpdate user={user} updateUser={updateUser} token={token} />
         </Col>
       </Row>
 
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <Card
-            border="light"
-            className="w-100 mt-4 mb-3 text-center"
-            bsPrefix="profile-card"
-          >
-            <Card.Body>
-              <UserUpdate user={user} updateUser={updateUser} token={token} />
-            </Card.Body>
-          </Card>
+      <Row className="mt-5">
+        <Col xs={12} sm={11} md={6} lg={4} xl={4}>
+          <UserDelete user={user} />
         </Col>
       </Row>
 
-      <Row className="justify-content-center">
-        <Col md={7}>
-          <Card
-            border="light"
-            className=" w-100 mt-4 mb-5 text-center"
-            bsPrefix="profile-card"
-          >
-            <Card.Body className="mt-3">
-              <p>You want to delete your account? Sad to see you go ...</p>
-              <Button
-                className="mb-3 mt-2 btn-secondary"
-                onClick={() => {
-                  if (confirm("Are you sure?")) {
-                    deleteAccount();
-                  }
-                }}
-              >
-                Delete account
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row className="justify-content-center">
+      <Row className="mt-5 mb-5">
         <Col>
-          <Card style={{ border: "none" }}>
-            <Card.Body>
-              <UserFavMovies
-                movies={movies}
-                user={user}
-                token={token}
-                updateUser={updateUser}
-              />
-            </Card.Body>
-          </Card>
+          <UserFavMovies
+            movies={movies}
+            user={user}
+            token={token}
+            updateUser={updateUser}
+          />
         </Col>
       </Row>
     </>
