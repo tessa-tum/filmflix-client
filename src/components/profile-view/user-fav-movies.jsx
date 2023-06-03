@@ -35,7 +35,7 @@ export const UserFavMovies = ({ movies, user, token, updateUser }) => {
 
   return (
     <>
-      <h2>Favorite movies:</h2>
+      <h3>Favorite movies:</h3>
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         <Row className="mb-4">{printFavoriteMovies}</Row>
