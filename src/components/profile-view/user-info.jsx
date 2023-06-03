@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export const UserInfo = ({ user }) => {
   return (
     <>
-      <h2 className="mb-3">Account information</h2>
+      <h3 className="mb-3">Account information</h3>
 
       <p>Username: {user.Username}</p>
       <p>Email: {user.Email}</p>

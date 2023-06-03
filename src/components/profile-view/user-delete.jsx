@@ -22,7 +22,7 @@ export const UserDelete = ({ user }) => {
 
   return (
     <>
-      <h2 className="mb-3">Delete account</h2>
+      <h3 className="mb-3">Delete account</h3>
       <p>Sad to see you go ...</p>
       <Button
         className="btn-secondary"

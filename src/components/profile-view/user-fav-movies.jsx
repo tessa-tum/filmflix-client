@@ -14,7 +14,15 @@ export const UserFavMovies = ({ movies, user, token, updateUser }) => {
       <Col className="mt-3">No favorite movies yet.</Col>
     ) : (
       favoriteMovies.map((movie) => (
-        <Col className="mt-4" key={movie._id} xs={12} sm={9} md={6} lg={3} xl={3}>
+        <Col
+          className="mt-4"
+          key={movie._id}
+          xs={12}
+          sm={9}
+          md={6}
+          lg={3}
+          xl={3}
+        >
           <MovieCard
             movie={movie}
             user={user}

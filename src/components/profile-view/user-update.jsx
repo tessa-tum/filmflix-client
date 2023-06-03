@@ -47,7 +47,7 @@ export const UserUpdate = ({ user, token, updateUser }) => {
 
   return (
     <>
-      <h2 className="mb-3">Update information</h2>
+      <h3 className="mb-3">Update information</h3>
 
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
@@ -70,7 +70,6 @@ export const UserUpdate = ({ user, token, updateUser }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength="8"
-
           />
         </Form.Group>
         <Form.Group className="mb-3">

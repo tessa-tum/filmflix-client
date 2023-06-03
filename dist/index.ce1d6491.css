@@ -12066,9 +12066,15 @@ h2, .h2, h3, .h3, h6, .h6 {
 }
 
 .navbar {
+  color: #0f0e17;
   background-color: #a7a9be;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.form-control:focus {
+  border-color: #ff8906;
+  box-shadow: 0 0 0 .2rem #83240240;
 }
 
 .footer {
