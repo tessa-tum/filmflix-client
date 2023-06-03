@@ -4,12 +4,15 @@
 
 This responsive SPA is for movie enthusiasts who enjoy reading information about different movies 
 and keeping an eye on their favorites.It represents the client-side for an app called filmflix API, based on its existing server-side code 
-([RESTful Movie API](https://github.com/tessa-tum/filmflix-api)).
-<br>
-It is [hosted on netlify](https://filmflix-app.netlify.app/login)
+([RESTful Movie API](https://github.com/tessa-tum/filmflix-api)). It is [hosted on netlify](https://filmflix-app.netlify.app/login)
+
+## Interface
+
+![Screenshot of main view](https://github.com/tessa-tum/filmflix-client/blob/main/src/assets/screenshot_movie-client_main.PNG)
 
 ## Requirements
-- MERN stack must be used (React library)
+
+- MERN stack must be used 
 - The app must
   - use Parcel as its build tool
   - be a single page application (SPA)
@@ -21,6 +24,7 @@ It is [hosted on netlify](https://filmflix-app.netlify.app/login)
   - be hosted online on Netlify
 
 ## Features
+
 - User registration and authentication
 - Browse and search a catalogue of movies 
 - View details for a single movie (incl. description, director, genre, movie poster)
@@ -30,22 +34,21 @@ It is [hosted on netlify](https://filmflix-app.netlify.app/login)
 - Responsive design for various devices and screen sizes
 
 ## Languages
+
 - HTML
 - SCSS
 - JavaScript, JSX
 
 ## Libraries / Frameworks used
+
 - React
 - React Bootstrap
 
 ## How to run
+
 - Clone repository using command git clone https://github.com/tessa-tum/filmflix-client.git
 - Navigate to the root directory and run npm install to install dependencies.
 - Run the app using parcel src/index.html
 - After this, app should be available in the browser at http://localhost:1234.
-
-## Interface
-
-![Screenshot of main view](src\assets\screenshot_movie-client_main.PNG)
 
 
