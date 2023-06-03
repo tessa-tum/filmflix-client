@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Form, FormControl } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { MovieCard } from "../movie-card/movie-card";
@@ -118,6 +118,7 @@ export const MainView = () => {
               </>
             }
           />
+
           <Route // to Signup View
             path="/signup"
             element={
@@ -194,11 +195,27 @@ export const MainView = () => {
                   </Col>
                 ) : (
                   <>
+                    {/* add search bar for movie by title */}
+                    <Row>
+                      <Col className="ps-0">
+                        <div style={{ width: "30%" }}>
+                          <Form className="d-flex mb-5 mt-2">
+                            <FormControl
+                              type="text"
+                              placeholder="Search for a movie by title"
+                              value={searchItem}
+                              onChange={(e) => setSearchItem(e.target.value)}
+                              className="rounded-0"
+                            />
+                          </Form>
+                        </div>
+                      </Col>
+                    </Row>
                     {filteredMovies.map((movie) => (
                       <Col
                         className="mb-4"
                         key={movie._id}
-                        xs= {12}
+                        xs={12}
                         sm={6}
                         md={4}
                         xl={3}

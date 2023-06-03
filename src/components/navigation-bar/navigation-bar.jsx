@@ -3,19 +3,12 @@ import {
   Container,
   Nav,
   Navbar,
-  Form,
-  FormControl,
   Offcanvas,
   NavDropdown,
 } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-export const NavigationBar = ({
-  user,
-  onLoggedOut,
-  searchItem,
-  setSearchItem,
-}) => {
+export const NavigationBar = ({ user, onLoggedOut, setSearchItem }) => {
   return (
     <>
       {[false, "sm", "md", "lg", "xl", "xxl"].map((expand) => (
@@ -30,9 +23,7 @@ export const NavigationBar = ({
             <Navbar.Brand as={Link} to="/" onClick={() => setSearchItem("")}>
               filmflix
             </Navbar.Brand>
-
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -44,7 +35,7 @@ export const NavigationBar = ({
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav className="flex-grow-1 justify-content-start">
                   {!user && (
                     <>
                       <Nav.Link as={Link} to={`/login`}>
@@ -67,29 +58,9 @@ export const NavigationBar = ({
                       <Nav.Link as={Link} to={`/profile`}>
                         Profile
                       </Nav.Link>
-
-                      <NavDropdown
-                        title="Logout"
-                        id={`offcanvasNavbarDropdown-expand-${expand}`}
-                      >
-                        <NavDropdown.Item onClick={onLoggedOut}>
-                          Logout
-                        </NavDropdown.Item>
-                      </NavDropdown>
-
-                      {/* enable search input bar */}
-                      {user && (
-                        <>
-                          <Form className="d-flex">
-                            <FormControl
-                              type="text"
-                              placeholder="Search by title"
-                              value={searchItem}
-                              onChange={(e) => setSearchItem(e.target.value)}
-                            />
-                          </Form>
-                        </>
-                      )}
+                      <div className="ms-auto">
+                        <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                      </div>
                     </>
                   )}
                 </Nav>
@@ -112,6 +83,5 @@ NavigationBar.propTypes = {
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.string.isRequired,
   }),
-  searchItem: PropTypes.string.isRequired,
   setSearchItem: PropTypes.func.isRequired,
 };
