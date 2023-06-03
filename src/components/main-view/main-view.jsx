@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Row, Col } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { Footer } from "../footer/footer";
 import { ProfileView } from "../profile-view/profile-view";
-import { Row, Col } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // MainView function component
 
@@ -80,7 +82,7 @@ export const MainView = () => {
         <Col className="mt-5"></Col>
       </Row>
 
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <Routes>
           <Route // to LoginView
             path="/login"
@@ -89,7 +91,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col className="mt-5" md={5}>
+                  <Col xs= {10} sm={10} md = {7} lg = {4} className="mt-5">
                     <h1 className="text-center">
                       Welcome to{" "}
                       <span style={{ color: "#ff8906" }}>filmflix!</span>
@@ -112,8 +114,10 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col className="mt-5" md={5}>
-                    <h1 className="text-center">Sign up here</h1>
+                  <Col xs= {10} sm={10} md = {7} lg = {4} className="mt-5">
+                    <h1 className="text-center">
+                      Sign up {""}
+                      <span style={{ color: "#ff8906" }}>here</span></h1>
                     <SignupView />
                   </Col>
                 )}
@@ -199,8 +203,16 @@ export const MainView = () => {
               </>
             }
           />
+          
         </Routes>
       </Row>
+
+      {/* <Row>
+        <Col>
+          <Footer />
+        </Col>
+      </Row> */}
+      
     </BrowserRouter>
   );
 };
