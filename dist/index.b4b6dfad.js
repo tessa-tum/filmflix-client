@@ -27403,6 +27403,7 @@ const MainView = ()=>{
                                     setUser(null);
                                     setToken(null);
                                     localStorage.clear();
+                                    window.location.reload();
                                 },
                                 updateUser: updateUser
                             }, void 0, false, void 0, void 0)
@@ -27464,7 +27465,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 188,
+                            lineNumber: 189,
                             columnNumber: 11
                         }, undefined)
                     ]
@@ -48151,7 +48152,9 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
                     lg: 4,
                     xl: 4,
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDelete.UserDelete), {
-                        user: user
+                        user: user,
+                        token: token,
+                        onLoggedOut: onLoggedOut
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 31,
@@ -48177,17 +48180,17 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
                         updateUser: updateUser
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 37,
+                        lineNumber: 41,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 36,
+                    lineNumber: 40,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 35,
+                lineNumber: 39,
                 columnNumber: 7
             }, undefined)
         ]
@@ -48209,8 +48212,8 @@ ProfileView.propTypes = {
             Description: (0, _propTypesDefault.default).string.isRequired
         })
     }).isRequired),
-    onLoggedOut: (0, _propTypesDefault.default).func.isRequired,
     token: (0, _propTypesDefault.default).string.isRequired,
+    onLoggedOut: (0, _propTypesDefault.default).func.isRequired,
     updateUser: (0, _propTypesDefault.default).func.isRequired,
     user: (0, _propTypesDefault.default).shape({
         Username: (0, _propTypesDefault.default).string.isRequired,
@@ -48654,7 +48657,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactToastify = require("react-toastify");
 var _reactToastifyCss = require("react-toastify/dist/ReactToastify.css");
-const UserDelete = ({ user  })=>{
+const UserDelete = ({ user , token , onLoggedOut  })=>{
     const deleteAccount = ()=>{
         fetch(`https://filmflix-api.herokuapp.com/users/${user.Username}`, {
             method: "DELETE",
@@ -48715,7 +48718,8 @@ UserDelete.propTypes = {
         Password: (0, _propTypesDefault.default).string.isRequired,
         Email: (0, _propTypesDefault.default).string.isRequired,
         Birthday: (0, _propTypesDefault.default).string.isRequired
-    }).isRequired
+    }).isRequired,
+    token: (0, _propTypesDefault.default).string.isRequired
 };
 var _c;
 $RefreshReg$(_c, "UserDelete");
