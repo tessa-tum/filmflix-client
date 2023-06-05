@@ -7,7 +7,7 @@ export const UserInfo = ({ user }) => {
 
       <p>Username: {user.Username}</p>
       <p>Email: {user.Email}</p>
-      <p className="m-0">Birthday: {user.Birthday.slice(0, 10)}</p>
+      <p className="m-0">Birthday: {user.Birthday !== undefined ? user.Birthday.slice(0, 10) : ""}</p>
     </>
   );
 };
