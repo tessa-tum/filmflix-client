@@ -1,5 +1,7 @@
 import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const UserDelete = ({ user }) => {
   const deleteAccount = () => {
@@ -9,14 +11,20 @@ export const UserDelete = ({ user }) => {
     })
       .then((response) => {
         if (response.ok) {
-          alert("Your account has been deleted. Good Bye!");
+          toast.success("Your account has been deleted. Good Bye!", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
           onLoggedOut();
         } else {
-          alert("Could not delete account");
+          toast.error("Could not delete account", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
         }
       })
       .catch((e) => {
-        alert(e);
+        toast.error(e);
       });
   };
 

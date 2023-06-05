@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const UserUpdate = ({ user, token, updateUser }) => {
   const [username, setUsername] = useState("");
@@ -30,18 +32,24 @@ export const UserUpdate = ({ user, token, updateUser }) => {
         if (response.ok) {
           return response.json();
         } else {
-          alert("Changing userdata failed");
+          toast.error("Changing userdata failed", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
           return false;
         }
       })
       .then((user) => {
         if (user) {
-          alert("Successfully changed userdata");
+          toast.success("Successfully changed userdata", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
           updateUser(user);
         }
       })
       .catch((e) => {
-        alert(e);
+        toast.error(e);
       });
   };
 

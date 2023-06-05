@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Nav,
-  Navbar,
-  Offcanvas,
-  NavDropdown,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const NavigationBar = ({ user, onLoggedOut, setSearchItem }) => {
@@ -58,9 +52,8 @@ export const NavigationBar = ({ user, onLoggedOut, setSearchItem }) => {
                       <Nav.Link as={Link} to={`/profile`}>
                         Profile
                       </Nav.Link>
-                      <div className="ms-auto">
-                        <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-                      </div>
+
+                      <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
                     </>
                   )}
                 </Nav>

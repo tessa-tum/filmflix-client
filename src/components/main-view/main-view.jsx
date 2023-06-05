@@ -9,6 +9,8 @@ import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Footer } from "../footer/footer";
 import { ProfileView } from "../profile-view/profile-view";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // MainView function component
 
@@ -67,8 +69,8 @@ export const MainView = () => {
         // set transformed movie data in state + catch errors
         setMovies(moviesFromApi);
       })
-      .catch((error) => {
-        console.log("Error fetching movies:", error);
+      .catch(() => {
+        toast.error("Error fetching movies. Try a re-load.");
       });
   }, [token]);
 
@@ -102,7 +104,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col xs={10} sm={10} md={7} lg={4} className="mt-5">
+                  <Col xs={12} sm={10} md={6} lg={4} xl={4} className="mt-5">
                     <h1 className="text-center">
                       Welcome to {""}
                       <span style={{ color: "#ff8906" }}>filmflix!</span>
@@ -126,7 +128,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col xs={10} sm={10} md={7} lg={4} className="mt-5">
+                  <Col xs={12} sm={10} md={6} lg={4} xl={4} className="mt-5">
                     <h1 className="text-center">
                       Sign up {""}
                       <span style={{ color: "#ff8906" }}>here</span>

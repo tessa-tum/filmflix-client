@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // SignupView function component
 
@@ -33,10 +35,10 @@ export const SignupView = () => {
       },
     }).then((response) => {
       if (response.ok) {
-        alert("Signup successful");
+        toast.success("Signup successful. Please log in.");
         navigate("/login");
       } else {
-        alert("Signup failed");
+        toast.error("Signup failed. Please try again later.");
       }
     });
   };

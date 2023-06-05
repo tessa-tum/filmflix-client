@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // MovieCard function component
 
@@ -29,19 +31,22 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
         if (response.ok) {
           return response.json();
         } else {
-          alert("Failed");
+          toast.error("Failed");
           return false;
         }
       })
       .then((user) => {
         if (user) {
-          alert("Successfully added to favorites");
+          toast.success("Added to favorites", {
+            autoClose: 1000,
+            hideProgressBar: true,
+          });
           setIsFavorite(true);
           updateUser(user);
         }
       })
       .catch((e) => {
-        alert(e);
+        toast.error(e);
       });
   };
 
@@ -59,19 +64,24 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
         if (response.ok) {
           return response.json();
         } else {
-          alert("Failed");
+          toast.error("Failed", {
+            autoClose: 2000,
+          });
           return false;
         }
       })
       .then((user) => {
         if (user) {
-          alert("Successfully removed from favorites");
+          toast.success("Removed from favorites", {
+            autoClose: 1000,
+            hideProgressBar: true,
+          });
           setIsFavorite(false);
           updateUser(user);
         }
       })
       .catch((e) => {
-        alert(e);
+        toast.error(e);
       });
   };
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // LoginView function component
 
@@ -32,11 +34,11 @@ export const LoginView = ({ onLoggedIn }) => {
           localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
-          alert("No such user");
+          toast.error("Incorrect username and/or password");
         }
       })
       .catch((e) => {
-        alert("Something went wrong");
+        toast.error(e);
       });
   };
 
