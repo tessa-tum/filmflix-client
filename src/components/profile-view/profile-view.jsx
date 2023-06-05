@@ -9,7 +9,6 @@ export const ProfileView = ({
   user,
   token,
   movies,
-  onLoggedOut,
   updateUser,
 }) => {
   return (
@@ -28,7 +27,7 @@ export const ProfileView = ({
 
       <Row className="mt-5">
         <Col xs={12} sm={11} md={6} lg={4} xl={4}>
-          <UserDelete user={user} />
+          <UserDelete user={user} token={token} />
         </Col>
       </Row>
 
@@ -64,7 +63,6 @@ ProfileView.propTypes = {
       }),
     }).isRequired
   ),
-  onLoggedOut: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   updateUser: PropTypes.func.isRequired,
   user: PropTypes.shape({

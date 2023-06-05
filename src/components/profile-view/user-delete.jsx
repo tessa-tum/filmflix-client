@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const UserDelete = ({ user }) => {
+export const UserDelete = ({ user, token }) => {
   const deleteAccount = () => {
     fetch(`https://filmflix-api.herokuapp.com/users/${user.Username}`, {
       method: "DELETE",
