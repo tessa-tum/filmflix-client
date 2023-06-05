@@ -20,7 +20,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
       <Col className="mt-3">No similar movies in database.</Col>
     ) : (
       similarMovies.map((m) => (
-        <Col className="mt-4" key={m._id} xs={12} md={6} lg={3} xl={3}>
+        <Col className="mt-4" key={m._id} xs={12} sm={6} md={4} lg={3} xl={2}>
           <MovieCard
             movie={m}
             user={user}

@@ -18,8 +18,8 @@ export const UserFavMovies = ({ movies, user, token, updateUser }) => {
           className="mt-4"
           key={movie._id}
           xs={12}
-          sm={9}
-          md={6}
+          sm={6}
+          md={4}
           lg={3}
           xl={3}
         >
